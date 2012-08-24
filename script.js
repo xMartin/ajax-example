@@ -13,11 +13,12 @@ buttonNode.addEventListener('click', function(event) {
 
 function ajax () {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://80.157.2.254/firefox%20OS/random.php');
+	xhr.open('GET', 'http://80.157.2.254/firefox%20OS/json.php');
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-		        document.getElementById('display').innerHTML = xhr.responseText;
+				var responseObject = JSON.parse(xhr.responseText);
+		        document.getElementById('display').innerHTML = responseObject.name + " " + responseObject.number;
 		    } else {
 		        alert('There was a problem with the request.');
 		    }
