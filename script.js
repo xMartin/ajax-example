@@ -1,7 +1,14 @@
 var buttonNode = document.getElementById('send');
 buttonNode.addEventListener('click', function(event) {
-	ajax();
-	startTimer(ajax);
+	if (buttonNode.innerHTML == 'start') {
+		ajax();
+		startTimer(ajax);
+		buttonNode.innerHTML = 'stop';
+	}
+	else {
+		stopTimer();
+		buttonNode.innerHTML = 'start';
+	}
 });
 
 function ajax () {
@@ -19,6 +26,12 @@ function ajax () {
 	xhr.send();
 }
 
+var interval;
+
 function startTimer (callback) {
-	setInterval(callback, 1000);
+	interval = setInterval(callback, 1000);
+}
+
+function stopTimer () {
+	clearInterval(interval);
 }
